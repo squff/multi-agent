@@ -1,9 +1,9 @@
-# D:\claude code
+# Multi-Agent AI 开发流水线
 
-这是 Claude Code 的主要工作目录。
+基于多智能体架构的自动化 AI 开发流水线。详见 README.md。
 
 ## 使用方式
-在终端中运行以下命令启动 Claude：
+
 ```bash
 cd /d/claude\ code && claude
 ```
