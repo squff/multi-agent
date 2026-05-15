@@ -8,3 +8,6 @@ Thumbs.db
 
 # B题（数学建模竞赛，不与 multi-agent 项目相关）
 B题/
+
+# Python cache
+__pycache__/
