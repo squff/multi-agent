@@ -1,0 +1,10 @@
+{
+  "simple_requirement": "- [ ] Create a user authentication module\n- [ ] Implement login endpoint (priority:high)\n- [ ] Add password validation\n- [ ] Write unit tests (priority:medium)",
+  "complex_requirement": "- [ ] Build a REST API for task management (priority:critical)\n  - [ ] Design database schema (priority:high)\n  - [ ] Implement CRUD endpoints (priority:high)\n  - [ ] Add request validation (priority:medium)\n- [ ] Set up CI/CD pipeline (priority:high)\n  - [ ] Configure GitHub Actions\n  - [ ] Add automated tests\n- [ ] Write documentation\n- [ ] Deploy to staging (priority:low)",
+  "code_generation_task": {
+    "id": "task-auth-001",
+    "description": "Implement a JWT-based authentication middleware with token refresh support",
+    "priority": "high"
+  },
+  "code_with_security_issues": "import os\nimport sqlite3\n\ndef get_user(db_path, user_id):\n    api_key = \"sk-1234567890abcdef1234567890abcdef\"\n    conn = sqlite3.connect(db_path)\n    cursor = conn.cursor()\n    query = f\"SELECT * FROM users WHERE id = {user_id}\"\n    cursor.execute(query)\n    return cursor.fetchone()\n\ndef run_command(cmd):\n    import subprocess\n    return subprocess.check_output(cmd, shell=True)"
+}

@@ -1,0 +1,11 @@
+# Claude Code
+.claude/
+.agents/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Large data files (>50MB)
+B题/数据集1：历史真实文件数据/D1440.xlsx
+B题/数据集1：历史真实文件数据/D1712.xlsx

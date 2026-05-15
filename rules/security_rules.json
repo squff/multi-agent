@@ -1,0 +1,60 @@
+{
+  "rules": [
+    {
+      "id": "SEC001",
+      "severity": "critical",
+      "description": "Hardcoded API key or secret detected",
+      "pattern": "(?:api[_-]?key|api[_-]?secret|password|secret|token|credential)\\s*[:=]\\s*['\"][A-Za-z0-9_\\-]{16,}['\"]",
+      "message": "Hard-coded credentials should be replaced with environment variables or a secrets manager."
+    },
+    {
+      "id": "SEC002",
+      "severity": "critical",
+      "description": "SQL injection risk detected",
+      "pattern": "execute\\s*\\(\\s*f['\"]|executemany\\s*\\(\\s*f['\"]|raw_sql\\s*[:=]\\s*f['\"]",
+      "message": "Use parameterized queries instead of f-string interpolation in SQL statements."
+    },
+    {
+      "id": "SEC003",
+      "severity": "high",
+      "description": "Use of eval or exec without sanitization",
+      "pattern": "\\beval\\s*\\(|\\bexec\\s*\\(|compile\\s*\\(.*source",
+      "message": "Avoid eval/exec with untrusted input. Consider safer alternatives."
+    },
+    {
+      "id": "SEC004",
+      "severity": "high",
+      "description": "Potential path traversal",
+      "pattern": "os\\.path\\.join\\(\\s*base_dir\\s*,\\s*user_input",
+      "message": "Sanitize user-supplied path components to prevent path traversal."
+    },
+    {
+      "id": "SEC005",
+      "severity": "medium",
+      "description": "Pickle usage with untrusted data",
+      "pattern": "pickle\\.loads?\\(|joblib\\.load\\(",
+      "message": "Pickle can execute arbitrary code. Use safe serialization formats like JSON."
+    },
+    {
+      "id": "SEC006",
+      "severity": "medium",
+      "description": "Subprocess with shell=True",
+      "pattern": "subprocess\\.(?:call|check_call|check_output|Popen|run)\\(.*shell\\s*=\\s*True",
+      "message": "Avoid shell=True to prevent shell injection. Use argument lists instead."
+    },
+    {
+      "id": "QUAL001",
+      "severity": "low",
+      "description": "Missing type annotations",
+      "pattern": "^\\s*def\\s+\\w+\\s*\\([^)]*\\)\\s*:",
+      "message": "Add type annotations to function signatures for better maintainability."
+    },
+    {
+      "id": "QUAL002",
+      "severity": "low",
+      "description": "Function too long (>50 lines)",
+      "pattern": null,
+      "message": "Consider refactoring this function into smaller units."
+    }
+  ]
+}
