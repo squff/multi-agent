@@ -1,3 +1,4 @@
+import re
 import subprocess
 import tempfile
 from pathlib import Path
@@ -58,6 +59,3 @@ def add_type_annotations(source: str) -> str:
         result.append(line)
 
     return "\n".join(result)
-
-
-import re

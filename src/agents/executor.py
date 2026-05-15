@@ -4,7 +4,7 @@ import ast
 from typing import Any, Optional
 
 from schemas.task_schema import Task, TaskStatus
-from models.mimo-v2.5-pro import MiMoV2_5Pro, MiMoMessage
+from models.mimo_v2_5_pro import MiMoV2_5Pro, MiMoMessage
 from tools.code_formatter import format_code
 
 

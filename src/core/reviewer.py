@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import tempfile
+from pathlib import Path
 from typing import Any, Optional
 
 from linters.pylint_wrapper import PylintWrapper
@@ -28,7 +30,8 @@ class ReviewerAgent:
         report["security_issues"] = security_issues
 
         try:
-            lint_result = self.pylint.run(filepath)
+            lint_path = self._ensure_file(code, filepath)
+            lint_result = self.pylint.run(lint_path)
             report["quality_issues"] = lint_result["issues"]
             report["score"] = lint_result["score"]
         except Exception as e:
@@ -45,6 +48,16 @@ class ReviewerAgent:
         )
 
         return report
+
+    def _ensure_file(self, code: str, filepath: str) -> str:
+        """Return a real file path, writing code to temp file if needed."""
+        path = Path(filepath)
+        if path.exists():
+            return filepath
+        tmp = tempfile.NamedTemporaryFile(suffix=".py", mode="w", delete=False, encoding="utf-8")
+        tmp.write(code)
+        tmp.close()
+        return tmp.name
 
     def suggest_fixes(self, issues: list[dict[str, Any]]) -> list[str]:
         """Generate fix suggestions from review issues."""

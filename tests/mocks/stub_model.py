@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any, Optional
 
-from models.mimo-v2.5-pro import MiMoResponse
+from models.mimo_v2_5_pro import MiMoResponse
 
 
 class StubModel:

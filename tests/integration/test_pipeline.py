@@ -48,13 +48,16 @@ class TestPipelineIntegration:
         assert has_nested, "Expected at least one task with subtasks"
 
     def test_executor_generates_valid_code(self):
-        from schemas.task_schema import Task
-        executor = ExecutorAgent()
+        from schemas.task_schema import Task, Priority
+        stub = StubModel(responses={
+            "Python": "def authenticate(token: str) -> dict:\n    \"\"\"Verify a JWT token and return user data.\"\"\"\n    return {\"user_id\": 1}\n",
+        })
+        executor = ExecutorAgent(model=stub)
         task_data = load_fixture("code_generation_task")
         task = Task(
             id=task_data["id"],
             description=task_data["description"],
-            priority=task_data["priority"],
+            priority=Priority(task_data["priority"]),
         )
         result = executor.execute(task)
         assert result.status.value == "completed", f"Execution failed: {result.error}"
@@ -62,10 +65,10 @@ class TestPipelineIntegration:
         assert "def " in result.output, "Expected function definition in output"
 
     def test_executor_with_stub_model(self):
-        from schemas.task_schema import Task
+        from schemas.task_schema import Task, Priority
         stub = StubModel(responses={"JWT": "def verify_jwt(token: str) -> dict: pass"})
         executor = ExecutorAgent(model=stub)
-        task = Task(id="t1", description="Implement JWT verification", priority="high")
+        task = Task(id="t1", description="Implement JWT verification", priority=Priority.HIGH)
         result = executor.execute(task)
         assert result.status.value == "completed"
 

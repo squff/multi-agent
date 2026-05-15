@@ -65,7 +65,7 @@
 ├── schemas/
 │   └── task_schema.py            # 任务数据模型（嵌套、优先级、状态）
 ├── models/
-│   └── mimo-v2.5-pro.py          # MiMo 模型接口（支持回退模式）
+│   └── mimo_v2_5_pro.py          # MiMo 模型接口（支持回退模式）
 ├── rules/
 │   ├── security_rules.json       # 安全规则定义（8 类）
 │   └── security_rules.py         # 规则引擎

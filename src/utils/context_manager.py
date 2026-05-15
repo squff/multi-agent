@@ -27,12 +27,16 @@ class ContextManager:
 
     def compress(self) -> str:
         """Compress the full context into a summary, preserving key signatures."""
+        combined = self.context[:]
+        if self.summary:
+            combined.insert(0, {"role": "system", "content": self.summary})
+
         preserved = extract_key_variables(
-            "\n".join(m["content"] for m in self.context)
+            "\n".join(m["content"] for m in combined)
         )
 
         self.summary = summarize_context(
-            self.context,
+            combined,
             max_tokens=self.max_tokens,
             preserve_patterns=[
                 r"def \w+\(.*?\)",

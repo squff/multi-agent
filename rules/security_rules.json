@@ -11,7 +11,7 @@
       "id": "SEC002",
       "severity": "critical",
       "description": "SQL injection risk detected",
-      "pattern": "execute\\s*\\(\\s*f['\"]|executemany\\s*\\(\\s*f['\"]|raw_sql\\s*[:=]\\s*f['\"]",
+      "pattern": "f['\"].*(?:SELECT|INSERT|UPDATE|DELETE|DROP|TRUNCATE)|execute\\s*\\(\\s*f['\"]|executemany\\s*\\(\\s*f['\"]|raw_sql\\s*[:=]\\s*f['\"]",
       "message": "Use parameterized queries instead of f-string interpolation in SQL statements."
     },
     {
