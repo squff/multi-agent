@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "multi-agent-pipeline"
+version = "0.1.0"
+description = "Multi-Agent AI development pipeline for automated code generation"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "squff"},
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "requests>=2.28.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "pylint>=2.17",
+    "autopep8>=2.0",
+    "black>=23.0",
+    "pyyaml>=6.0",
+]
+lint = [
+    "pylint>=2.17",
+    "autopep8>=2.0",
+    "black>=23.0",
+]
+
+[project.scripts]
+multi-agent = "main:main"
+
+[tool.setuptools.packages.find]
+include = ["src*", "schemas*", "rules*", "linters*", "tools*", "models*", "nlp*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --tb=short"
+
+[tool.coverage.run]
+source = ["src", "schemas", "rules", "linters"]
+branch = true
+
+[tool.coverage.report]
+fail_under = 80

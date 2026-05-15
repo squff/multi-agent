@@ -6,6 +6,5 @@
 Thumbs.db
 .DS_Store
 
-# Large data files (>50MB)
-B题/数据集1：历史真实文件数据/D1440.xlsx
-B题/数据集1：历史真实文件数据/D1712.xlsx
+# B题（数学建模竞赛，不与 multi-agent 项目相关）
+B题/
